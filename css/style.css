@@ -1,0 +1,164 @@
+@import url(https://fonts.googleapis.com/css?family=Orbitron:400,700);
+
+:root {
+    --bl-r: 102;
+    --bl-g: 204;
+    --bl-b: 255;
+
+    --blue: rgba(var(--bl-r), var(--bl-g), var(--bl-b), 1);
+    --blue-glass: rgba(var(--bl-r), var(--bl-g), var(--bl-b), 0.32);
+
+    --d-val: 17;
+    --dark: rgba(0, var(--d-val), var(--d-val), 1);
+    --dark-glass: rgba(0, calc(var(--d-val) * 0.4), calc(var(--d-val) * 0.6), 0.8);
+    --test-color: navy;
+    --test-glass: rgba(0, 0, 0, 0.8);
+
+    --base-metric: 48px;
+    --header-height: var(--base-metric);
+    --base-margin: calc(var(--base-metric) * 0.75);
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background: #000;
+    color: var(--blue);
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+body > * { }
+
+header {
+    width: 100%;
+    height: var(--header-height);
+    border-bottom: 1px solid var(--blue-glass);
+    background: var(--test-glass);
+    margin-bottom: var(--base-margin);
+}
+
+h1 {
+    z-index: 1;
+    float: left;
+    color: var(--dark);
+    font-size: 30px;
+    margin: 8px 0 0 8px;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px var(--blue);
+}
+
+main {
+    --dim: max(80vh, 40vw);
+    display: block;
+    z-index: 10;
+    flex-shrink: .5;
+    height: var(--dim);
+    /* height: var(--dim);
+    width: var(--dim); */
+    width: 54%;
+
+    margin: 0 var(--base-margin); 
+    border: 1px solid var(--blue-glass);
+    background: rgba(0, 0, 0, 0.8);
+    mix-blend-mode: darken;
+}
+
+aside {
+    border: 1px solid var(--blue-glass);
+    margin: 0 var(--base-margin) 0 0; 
+    height: var(--dim);
+    width: 30%;
+}
+
+footer {
+    width: 100%;
+    align-self: flex-end;
+    padding-left: 12px;
+    font-weight: normal;
+   /*  height: calc(var(--base-margin) / 2); */
+}
+
+#space, #space > div {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+#space > div {
+    background-image: 
+        radial-gradient(1px 1px at 24px 32px, #eee, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 40px 72px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 50px 168px, #ddd, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 130px 82px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 160px 120px, #ddd, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 220px 220px;
+    animation: zoom 4.20s infinite;
+    opacity: 0;
+}
+  
+#space > div:nth-child(1) {
+    background-position: 50% 50%;
+    animation-delay: 0s;
+}
+
+#space > div:nth-child(2) {
+    background-position: 20% 60%;
+    animation-delay: 1.2s;
+}
+
+#space > div:nth-child(3) {
+    background-position: -20% -30%;
+    animation-delay: 2.4s;
+}
+
+#space > div:nth-child(4) {
+    background-position: 40% -80%;
+    animation-delay: 3.6s;
+}
+
+#space > div:nth-child(5) {
+    background-position: -24% 32%;
+    animation-delay: 4.8s;
+}
+  
+@keyframes zoom {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.2);
+        animation-timing-function: linear;
+    } 
+    
+    80% {
+        opacity: 0.4;
+        transform: scale(4.8);
+        animation-timing-function: linear;
+    }
+        
+    90% {
+        opacity: 0.2;
+        transform: scale(5.4);
+        animation-timing-function: linear;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(6.2);
+    }
+}

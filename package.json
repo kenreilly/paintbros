@@ -1,0 +1,17 @@
+{
+  "name": "paintbros",
+  "version": "1.0.0",
+  "description": "old skool retro paint",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "paint",
+    "old",
+    "skool",
+    "retro"
+  ],
+  "author": "Kenneth Reilly <kennethwaynereilly@gmail.com>",
+  "license": "ISC"
+}
