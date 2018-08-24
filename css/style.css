@@ -57,6 +57,9 @@ h1 {
     text-shadow: 1px 1px 3px var(--blue);
 }
 
+h2, h3, h4 { color: var(--blue); text-shadow: 1px 1px 3px var(--blue); }
+h2 { font-size: 18px }
+
 main {
     --dim: max(80vh, 40vw);
     display: block;
@@ -161,4 +164,26 @@ footer {
         opacity: 0;
         transform: scale(6.2);
     }
+}
+
+aside { padding: 12px; }
+
+aside > h2 { margin-bottom: 12px }
+aside > div { margin-bottom: 2px; }
+
+.palette {
+    display: block;
+    clear: both;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.palette > div {
+    height: 12px;
+    width: 12px;
+    display: inline-block;
+    float: left;
+    margin: 1px;
+    padding: 0;
+
 }
