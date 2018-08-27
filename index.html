@@ -12,6 +12,10 @@
 
     <header>
         <h1>paintbros</h1>
+        <div class="commands">
+            <button name="save">save</button>
+            <button name="new">new</button>
+        </div>
     </header>
 
     <div class="display">
@@ -40,12 +44,31 @@
             </div>
         </div>
     </div>
-   
     
     <footer>
         <div>&copy;2018 Kenneth Reilly</div>
         <div>@8_bit_hacker</div>
     </footer>
+
+    <div class="modal-container hidden">
+        <div class="modal hidden" name="new_file">
+
+            <h2 class="modal-title">new image</h2>
+            <form>
+
+                <span>height:</span>
+                <input name="height" />
+            
+                <span>width:</span>
+                <input name="width" />
+            </form>
     
+            <div class="buttons">
+                <button name="ok">OK</button>
+                <button name="cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

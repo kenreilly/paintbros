@@ -1,4 +1,37 @@
 import { Palette } from './palette.js';
+import { Modal } from './modal.js';
+class NewFileDialog extends Modal {
+    constructor() {
+        super('new_file');
+        this.fields = {
+            height: null,
+            width: null
+        };
+        let ok_button = this.querySelector('button[name=ok]');
+        let cancel_button = this.querySelector('button[name=cancel]');
+        ok_button.onclick = this.on_click_ok.bind(this);
+        cancel_button.onclick = this.on_click_cancel.bind(this);
+        this.fields.height = this.querySelector('input[name=height]');
+        this.fields.width = this.querySelector('input[name=width]');
+        this.reset_fields();
+    }
+    on_click_ok() {
+        let dimensions = {
+            height: parseInt(this.fields.height.value),
+            width: parseInt(this.fields.width.value)
+        };
+        PaintBros.new_image(dimensions);
+        this.hide();
+    }
+    on_click_cancel() {
+        this.reset_fields();
+        this.hide();
+    }
+    reset_fields() {
+        this.fields.height.value = PaintBros.default_size.height.toString();
+        this.fields.width.value = PaintBros.default_size.width.toString();
+    }
+}
 var PaintTool;
 (function (PaintTool) {
     PaintTool[PaintTool["Erase"] = 0] = "Erase";
@@ -36,7 +69,11 @@ class PaintBros {
         PaintBros.current_el.appendChild(el);
         PaintBros.current_color = Palette[0];
     }
-    static init_buttons() {
+    static init_command_buttons() {
+        let new_button = document.querySelector('.commands > button[name=new]');
+        new_button.onclick = () => { PaintBros.new_file_dialog.show(); };
+    }
+    static init_tool_buttons() {
         document.querySelectorAll('.tools > button').forEach((node) => {
             var button = node;
             button.onclick = PaintBros.on_click_tool.bind(PaintBros, button);
@@ -51,6 +88,11 @@ class PaintBros {
         PaintBros.editor_el.onmouseup = (ev) => { PaintBros.editor_mouse_down = false; };
         PaintBros.editor_el.onmouseleave = (ev) => { PaintBros.editor_mouse_down = false; };
         PaintBros.editor_el.onmousemove = PaintBros.on_mouse_move;
+        PaintBros.new_image(PaintBros.default_size);
+        window.onresize = PaintBros.resize_editor;
+    }
+    static new_image(dimensions) {
+        PaintBros.image_size = dimensions;
         while (PaintBros.editor_el.firstChild) {
             PaintBros.editor_el.removeChild(PaintBros.editor_el.firstChild);
         }
@@ -62,7 +104,6 @@ class PaintBros {
             PaintBros.editor_el.appendChild(pixel);
         }
         PaintBros.resize_editor();
-        window.onresize = PaintBros.resize_editor;
     }
     static resize_editor() {
         let bound_rect = PaintBros.editor_container.getBoundingClientRect();
@@ -132,9 +173,11 @@ class PaintBros {
     }
     static init() {
         PaintBros.image_size = PaintBros.default_size;
+        PaintBros.new_file_dialog = new NewFileDialog();
         PaintBros.init_palette();
         PaintBros.init_editor();
-        PaintBros.init_buttons();
+        PaintBros.init_tool_buttons();
+        PaintBros.init_command_buttons();
         // Paintbros.canvas = document.querySelector('canvas')
         // Paintbros.ctx = Paintbros.canvas.getContext('2d')
         // let imagedata = Paintbros.ctx.createImageData(32, 32)

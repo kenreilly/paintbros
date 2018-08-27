@@ -49,11 +49,23 @@ header {
     background: var(--test-glass);
 }
 
-header > button {
+.commands {
     float: right;
-    margin: 0 6px 0 0;
+    height: var(--header-height);
+    display: flex;
+}
+.commands > button {
+    float: right;
+    margin: 12px 6px;
+    padding: 0 8px;
     border: 1px solid var(--blue-glass);
-    color: var(--blue);
+    color: var(--light-blue-glass);
+}
+.commands > button:last-child {
+    margin-right: 14px;
+}
+.commands > button:hover {
+
 }
 
 h1 {
@@ -87,6 +99,7 @@ div.editor-container {
 }
 
 div.editor {
+    cursor: default;
     margin: auto;
     display: flex;
     flex-flow: row wrap;
@@ -182,9 +195,8 @@ div.sidebar > h2 + div { margin-bottom: 24px; }
     margin: 1px;
 }
 
-.tools > button {
-    height: 24px;
-    width: 32px;
+button {
+
     font-size: 14px;
     border: 1px solid var(--blue-glass);
     background-color: var(--dark-glass);
@@ -194,7 +206,71 @@ div.sidebar > h2 + div { margin-bottom: 24px; }
     cursor: pointer;
 }
 
-.tools > button.selected {
+button:hover {
+    background-color: var(--blue-glass);
+}
+
+button.selected {
     color: var(--blue);
     background-color: var(--blue-glass);
 }
+
+.tools > button {
+    height: 24px;
+    width: 32px;
+}
+
+.modal-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.modal {
+    display: flex;
+    align-items: stretch;
+    flex-flow: column nowrap;
+    border: 1px solid var(--blue-glass);
+    background-color: #000;
+    height: 50%;
+    width: 50%;
+    margin: 20% auto;
+    padding: 20px;
+}
+
+.modal > h2 {
+    border-bottom: 1px solid var(--blue-glass);
+}
+
+.modal > form {
+    flex-grow: 1;
+    padding-top: 20px;
+}
+
+.modal > form > span {
+    display: block;
+    float: left;
+    width: 20%;
+    margin-bottom: 12px;
+}
+
+.modal > form > input {
+    width: 40%;
+    clear: right;
+    margin-bottom: 12px;
+    margin-right: 20%;
+    background-color: var(--dark-blue-glass);
+    border: 1px solid var(--blue-glass);
+    color: var(--light-blue-glass);
+    font-size: 14px;
+    padding: 2px;
+}
+
+.modal > div.buttons {
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+
+.hidden { display: none }
