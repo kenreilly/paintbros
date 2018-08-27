@@ -6,7 +6,10 @@
     --bl-b: 255;
 
     --blue: rgba(var(--bl-r), var(--bl-g), var(--bl-b), 1);
+    --light-blue-glass:  rgba(var(--bl-r), var(--bl-g), var(--bl-b), 0.60);
     --blue-glass: rgba(var(--bl-r), var(--bl-g), var(--bl-b), 0.32);
+    --dark-blue-glass: rgba(var(--bl-r), var(--bl-g), var(--bl-b), 0.24);
+
 
     --d-val: 17;
     --dark: rgba(0, var(--d-val), var(--d-val), 1);
@@ -16,7 +19,10 @@
 
     --base-metric: 48px;
     --header-height: var(--base-metric);
-    --base-margin: calc(var(--base-metric) * 0.75);
+    --base-margin: calc(var(--base-metric) / 2);
+
+    --palette-item-size: 16px;
+    --palette-width: calc(var(--palette-item-size) * 16)
 }
 
 html, body {
@@ -32,19 +38,22 @@ body {
     letter-spacing: 1px;
     cursor: default;
     display: flex;
-    flex-direction: column;
-    flex-flow: row wrap;
-    justify-content: space-around;
+    flex-flow: column nowrap;
+    align-items: stretch;
 }
-
-body > * { }
 
 header {
     width: 100%;
     height: var(--header-height);
     border-bottom: 1px solid var(--blue-glass);
     background: var(--test-glass);
-    margin-bottom: var(--base-margin);
+}
+
+header > button {
+    float: right;
+    margin: 0 6px 0 0;
+    border: 1px solid var(--blue-glass);
+    color: var(--blue);
 }
 
 h1 {
@@ -60,130 +69,132 @@ h1 {
 h2, h3, h4 { color: var(--blue); text-shadow: 1px 1px 3px var(--blue); }
 h2 { font-size: 18px }
 
-main {
+div.display {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+div.editor-container {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    border: 1px solid var(--dark-blue-glass);
     --dim: max(80vh, 40vw);
-    display: block;
-    z-index: 10;
-    flex-shrink: .5;
-    height: var(--dim);
-    /* height: var(--dim);
-    width: var(--dim); */
-    width: 54%;
-
-    margin: 0 var(--base-margin); 
-    border: 1px solid var(--blue-glass);
-    background: rgba(0, 0, 0, 0.8);
-    mix-blend-mode: darken;
+    min-height: var(--dim);
+    align-items: stretch;
 }
 
-aside {
-    border: 1px solid var(--blue-glass);
-    margin: 0 var(--base-margin) 0 0; 
+div.editor {
+    margin: auto;
+    display: flex;
+    flex-flow: row wrap;
+    /* margin: var(--base-margin); */
+    border-right: 1px solid #5a5a5a;
+    border-bottom: 1px solid #5a5a5a;
+    background: repeating-linear-gradient(
+        -45deg,
+        #606cbc5b,
+        #606cbc50 5px,
+        #4652984f 5px,
+        #46529817 10px
+    );
+}
+
+.editor > i {
+    display: block;
+    box-shadow: inset 1px 1px #5a5a5a;
+    align-items: flex-start;
+}
+
+div.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: flex-start;
+    border-left: 1px solid var(--blue-glass);
     height: var(--dim);
-    width: 30%;
+    padding: 8px; 
 }
 
 footer {
+    flex-shrink: 1;
     width: 100%;
     align-self: flex-end;
     padding-left: 12px;
     font-weight: normal;
-   /*  height: calc(var(--base-margin) / 2); */
+    border-top: 1px solid var(--blue-glass);
 }
 
-#space, #space > div {
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
+footer > div { 
+    float: left;
+    line-height: 18px;
+    margin: 6px 12px;
 }
+footer > div:nth-child(2) { font-size: 12px; }
 
-#space > div {
-    background-image: 
-        radial-gradient(1px 1px at 24px 32px, #eee, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 40px 72px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 50px 168px, #ddd, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 130px 82px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 160px 120px, #ddd, rgba(0,0,0,0));
-    background-repeat: repeat;
-    background-size: 220px 220px;
-    animation: zoom 4.20s infinite;
-    opacity: 0;
-}
-  
-#space > div:nth-child(1) {
-    background-position: 50% 50%;
-    animation-delay: 0s;
-}
-
-#space > div:nth-child(2) {
-    background-position: 20% 60%;
-    animation-delay: 1.2s;
-}
-
-#space > div:nth-child(3) {
-    background-position: -20% -30%;
-    animation-delay: 2.4s;
-}
-
-#space > div:nth-child(4) {
-    background-position: 40% -80%;
-    animation-delay: 3.6s;
-}
-
-#space > div:nth-child(5) {
-    background-position: -24% 32%;
-    animation-delay: 4.8s;
-}
-  
-@keyframes zoom {
-
-    0% {
-        opacity: 0;
-        transform: scale(0.2);
-        animation-timing-function: linear;
-    } 
-    
-    80% {
-        opacity: 0.4;
-        transform: scale(4.8);
-        animation-timing-function: linear;
-    }
-        
-    90% {
-        opacity: 0.2;
-        transform: scale(5.4);
-        animation-timing-function: linear;
-    }
-
-    100% {
-        opacity: 0;
-        transform: scale(6.2);
-    }
-}
-
-aside { padding: 12px; }
-
-aside > h2 { margin-bottom: 12px }
-aside > div { margin-bottom: 2px; }
+div.sidebar > h2 { margin: 0 0 12px 0 }
+div.sidebar > h2 + div { margin-bottom: 24px; }
 
 .palette {
+    height: var(--palette-width);
+    width: var(--palette-width);
     display: block;
     clear: both;
     box-sizing: border-box;
     overflow: auto;
+    display: flex;
+    flex-flow: column wrap;
 }
 
 .palette > div {
-    height: 12px;
-    width: 12px;
-    display: inline-block;
-    float: left;
-    margin: 1px;
+    height: var(--palette-item-size);
+    width: var(--palette-item-size);
     padding: 0;
+}
 
+.palette > div:hover {
+    cursor: copy;
+}
+
+.swatch {
+    display: flex;
+    width: var(--palette-width);
+}
+
+.recent-colors { 
+   display: flex;
+   flex-flow: row wrap;
+}
+
+.recent-colors > div {
+    height: 14px;
+    width: 14px;
+    margin: 1px;
+    float: left;
+}
+
+.current-color > div {
+    border: 1px solid #a0a0a0;
+    height: 28px;
+    width: 28px;
+    margin: 1px;
+}
+
+.tools > button {
+    height: 24px;
+    width: 32px;
+    font-size: 14px;
+    border: 1px solid var(--blue-glass);
+    background-color: var(--dark-glass);
+    color: var(--light-blue-glass);
+    font-style: italic;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.tools > button.selected {
+    color: var(--blue);
+    background-color: var(--blue-glass);
 }

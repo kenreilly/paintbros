@@ -10,32 +10,41 @@
 </head>
 <body>
 
-    <div id="space">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-
     <header>
         <h1>paintbros</h1>
     </header>
 
-    <main>
-       
-    </main>
+    <div class="display">
 
-    <aside>
-        <h2>palette</h2>
-        <div class="palette"></div>
+        <div class="editor-container">
+            <div class="editor"></div>
+        </div>
 
-        <h2>tools</h2>
-        <div class="tools"></div>
-    </aside>
+        <div class="sidebar">
+            <h2>palette</h2>
+            <div class="palette"></div>
+
+            <h2>swatch</h2>
+            <div class="swatch">
+                <div class="current-color"></div>
+                <div class="recent-colors"></div>
+            </div>
+
+            <h2>tools</h2>
+            <div class="tools">
+                <button name="Paint" class="selected">!</button>
+                <button name="Erase">x</button>
+                <button name="Line">|</button>
+                <button name="Ellipse">O</button>
+                <button name="Rect">[]</button>
+            </div>
+        </div>
+    </div>
+   
     
     <footer>
-        <p>&copy;2018 Kenneth Reilly @8_bit_hacker</p>
+        <div>&copy;2018 Kenneth Reilly</div>
+        <div>@8_bit_hacker</div>
     </footer>
     
 </body>
