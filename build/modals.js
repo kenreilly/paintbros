@@ -1,0 +1,79 @@
+import { Config } from './config.js';
+export class Modal {
+    show() {
+        this.container.classList.remove('hidden');
+        this.dialog.classList.remove('hidden');
+    }
+    hide() {
+        this.container.classList.add('hidden');
+        this.dialog.classList.add('hidden');
+    }
+    querySelector(selector) {
+        return this.dialog.querySelector(selector);
+    }
+    constructor(name) {
+        this.container = document.querySelector('.modal-container');
+        this.dialog = document.querySelector('.modal[name=' + name + ']');
+    }
+}
+export class NewFileDialog extends Modal {
+    constructor() {
+        super('new_file');
+        this.fields = {
+            height: null,
+            width: null
+        };
+        this.on_request_new_image = (dimensions) => { };
+        let ok_button = this.querySelector('button[name=ok]');
+        let cancel_button = this.querySelector('button[name=cancel]');
+        ok_button.onclick = this.on_click_ok.bind(this);
+        cancel_button.onclick = this.on_click_cancel.bind(this);
+        this.fields.height = this.querySelector('input[name=height]');
+        this.fields.width = this.querySelector('input[name=width]');
+        this.reset_fields();
+    }
+    on_click_ok() {
+        let dimensions = {
+            height: parseInt(this.fields.height.value),
+            width: parseInt(this.fields.width.value)
+        };
+        this.on_request_new_image(dimensions);
+        this.hide();
+    }
+    on_click_cancel() {
+        this.reset_fields();
+        this.hide();
+    }
+    reset_fields() {
+        this.fields.height.value = Config.default_size.height.toString();
+        this.fields.width.value = Config.default_size.width.toString();
+    }
+}
+export class SaveFileDialog extends Modal {
+    constructor() {
+        super('save_file');
+        this.fields = {
+            name: null,
+            type: null
+        };
+        this.on_request_save = (name, type) => { };
+        let ok_button = this.querySelector('button[name=ok]');
+        let cancel_button = this.querySelector('button[name=cancel]');
+        ok_button.onclick = this.on_click_ok.bind(this);
+        cancel_button.onclick = this.on_click_cancel.bind(this);
+        this.fields.name = this.querySelector('input[name=name]');
+        this.fields.type = this.querySelector('select[name=type]');
+        this.reset_fields();
+    }
+    reset_fields() {
+        this.fields.name.value = "new_image";
+    }
+    on_click_ok() {
+        this.on_request_save(this.fields.name.value, this.fields.type.value);
+        this.hide();
+    }
+    on_click_cancel() {
+        this.reset_fields();
+        this.hide();
+    }
+}

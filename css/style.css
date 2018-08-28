@@ -73,7 +73,7 @@ h1 {
     float: left;
     color: var(--dark);
     font-size: 30px;
-    margin: 8px 0 0 8px;
+    margin: 4px 0 0 8px;
     letter-spacing: 1px;
     text-shadow: 1px 1px 3px var(--blue);
 }
@@ -224,7 +224,10 @@ button.selected {
     position: absolute;
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .modal {
     display: flex;
@@ -234,7 +237,7 @@ button.selected {
     background-color: #000;
     height: 50%;
     width: 50%;
-    margin: 20% auto;
+    
     padding: 20px;
 }
 
@@ -254,11 +257,19 @@ button.selected {
     margin-bottom: 12px;
 }
 
-.modal > form > input {
-    width: 40%;
-    clear: right;
-    margin-bottom: 12px;
-    margin-right: 20%;
+
+select { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; 
+}
+
+select > option {
+    background-color: #000;
+    color: var(--light-blue-glass);
+}
+
+input, select {
     background-color: var(--dark-blue-glass);
     border: 1px solid var(--blue-glass);
     color: var(--light-blue-glass);
@@ -266,10 +277,22 @@ button.selected {
     padding: 2px;
 }
 
+.modal > form > input, .modal > form > select {
+    width: 40%;
+    clear: right;
+    margin-bottom: 12px;
+    margin-right: 20%;
+}
+
 .modal > div.buttons {
     flex-shrink: 1;
     display: flex;
     flex-direction: row-reverse;
+}
+
+.modal > div.buttons > button {
+    margin-left: 20px;
+    padding: 4px 12px;
 }
 
 

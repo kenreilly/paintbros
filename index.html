@@ -38,7 +38,7 @@
             <div class="tools">
                 <button name="Paint" class="selected">!</button>
                 <button name="Erase">x</button>
-                <button name="Line">|</button>
+                <button name="Line">I</button>
                 <button name="Ellipse">O</button>
                 <button name="Rect">[]</button>
             </div>
@@ -51,6 +51,7 @@
     </footer>
 
     <div class="modal-container hidden">
+
         <div class="modal hidden" name="new_file">
 
             <h2 class="modal-title">new image</h2>
@@ -68,6 +69,29 @@
                 <button name="cancel">Cancel</button>
             </div>
         </div>
+
+        <div class="modal hidden" name="save_file">
+
+            <h2 class="modal-title">save_file</h2>
+            <form>
+
+                <span>name:</span>
+                <input name="name" />
+                
+                <span>type:</span>
+                <select name="type">
+                    <option value="json">Paintbros JSON</option>
+                    <option value="bmp">BMP</option>
+                </select>
+                
+            </form>
+    
+            <div class="buttons">
+                <button name="ok">Save</button>
+                <button name="cancel">Cancel</button>
+            </div>
+        </div>
+
     </div>
 
 </body>
