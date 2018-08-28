@@ -6,6 +6,7 @@ export interface ImageSize {
 export interface ImageContent {
     name?: string
     dimensions: ImageSize
+    swatch: Array<string>
     frames: Array<Array<string>>
 }
 

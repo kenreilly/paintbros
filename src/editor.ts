@@ -19,6 +19,7 @@ export class Editor {
 
         let data: ImageContent = {
             dimensions: Editor.dimensions,
+            swatch: Palette.swatch_data,
             frames: []
         }
         
@@ -53,7 +54,9 @@ export class Editor {
     }
 
     public static load_image(data: ImageContent) {
-       
+
+        Palette.load_swatch(data.swatch)
+        
         Editor.image_name = data.name
         Editor.dimensions = data.dimensions
 
@@ -75,6 +78,9 @@ export class Editor {
     }
 
     public static new_image(dimensions: ImageSize) {
+
+        Palette.reset_swatch()
+        Palette.init_swatch()
 
         Editor.dimensions = dimensions
         Editor.clear()

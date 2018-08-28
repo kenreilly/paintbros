@@ -6,6 +6,7 @@ export class Editor {
     static get image_data() {
         let data = {
             dimensions: Editor.dimensions,
+            swatch: Palette.swatch_data,
             frames: []
         };
         let frame = [];
@@ -30,6 +31,7 @@ export class Editor {
         }
     }
     static load_image(data) {
+        Palette.load_swatch(data.swatch);
         Editor.image_name = data.name;
         Editor.dimensions = data.dimensions;
         Editor.clear();
@@ -45,6 +47,8 @@ export class Editor {
         Editor.resize_editor();
     }
     static new_image(dimensions) {
+        Palette.reset_swatch();
+        Palette.init_swatch();
         Editor.dimensions = dimensions;
         Editor.clear();
         let size = Editor.dimensions.height * Editor.dimensions.width;
