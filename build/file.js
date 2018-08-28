@@ -1,6 +1,12 @@
 import { Editor } from './editor.js';
 export class File {
-    static load() {
+    static on_load(reader) {
+        Editor.load_image(JSON.parse(reader.result.toString()));
+    }
+    static load(file) {
+        let reader = new FileReader();
+        reader.onload = File.on_load.bind(null, reader);
+        reader.readAsText(file);
     }
     static trigger_download(name, blob) {
         let url = window.URL.createObjectURL(blob);

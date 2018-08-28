@@ -2,8 +2,16 @@ import { Editor } from './editor.js'
 
 export class File {
 
-    public static load() {
+    public static on_load(reader) {
 
+        Editor.load_image(JSON.parse(reader.result.toString())) 
+    }
+
+    public static load(file: Blob) {
+
+        let reader = new FileReader()        
+        reader.onload = File.on_load.bind(null, reader)
+        reader.readAsText(file)
     }
 
     private static trigger_download(name: string, blob: Blob) {
@@ -23,7 +31,7 @@ export class File {
 
         let image_data = Editor.image_data        
         let json = JSON.stringify({ name: name, ...image_data })
-        let blob = new Blob([json], {type: "octet/stream"})
+        let blob = new Blob([json], { type: "octet/stream" })
         File.trigger_download(name, blob)
     }
 }

@@ -126,3 +126,38 @@ export class SaveFileDialog extends Modal {
         this.reset_fields()
     }
 }
+
+
+export class LoadFileDialog extends Modal {
+
+    public fields: DialogFields = { 
+        file: null        
+    }
+
+    public on_request_load: Function = (path: string) => {}
+
+    private on_click_ok() {
+
+        this.on_request_load((<any>this.fields.file).files[0])
+        this.hide()
+    }
+
+    private on_click_cancel() {
+
+        this.fields.file.value = null
+        this.hide()
+    }
+
+    constructor() {
+        
+        super('load_file')
+
+        let ok_button = <HTMLButtonElement>this.querySelector('button[name=ok]')
+        let cancel_button = <HTMLButtonElement>this.querySelector('button[name=cancel]') 
+
+        ok_button.onclick = this.on_click_ok.bind(this)
+        cancel_button.onclick = this.on_click_cancel.bind(this)
+
+        this.fields.file = <HTMLInputElement>this.querySelector('input[name=file]')
+    }
+}

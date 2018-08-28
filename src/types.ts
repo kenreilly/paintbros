@@ -4,6 +4,7 @@ export interface ImageSize {
 }
 
 export interface ImageContent {
+    name?: string
     dimensions: ImageSize
     frames: Array<Array<string>>
 }

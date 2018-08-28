@@ -13,6 +13,7 @@
     <header>
         <h1>paintbros</h1>
         <div class="commands">
+            <button name="load">load</button>
             <button name="save">save</button>
             <button name="new">new</button>
         </div>
@@ -65,14 +66,14 @@
             </form>
     
             <div class="buttons">
-                <button name="ok">OK</button>
                 <button name="cancel">Cancel</button>
+                <button name="ok">OK</button>
             </div>
         </div>
 
         <div class="modal hidden" name="save_file">
 
-            <h2 class="modal-title">save_file</h2>
+            <h2 class="modal-title">save file</h2>
             <form>
 
                 <span>name:</span>
@@ -87,10 +88,23 @@
             </form>
     
             <div class="buttons">
-                <button name="ok">Save</button>
                 <button name="cancel">Cancel</button>
+                <button name="ok">Save</button>
             </div>
         </div>
+
+        <div class="modal hidden" name="load_file">
+
+                <h2 class="modal-title">load file</h2>
+                <form>
+                    <input type="file" name="file" />  
+                </form>
+        
+                <div class="buttons">
+                    <button name="cancel">Cancel</button>
+                    <button name="ok">Load</button>
+                </div>
+            </div>
 
     </div>
 

@@ -77,3 +77,25 @@ export class SaveFileDialog extends Modal {
         this.hide();
     }
 }
+export class LoadFileDialog extends Modal {
+    constructor() {
+        super('load_file');
+        this.fields = {
+            file: null
+        };
+        this.on_request_load = (path) => { };
+        let ok_button = this.querySelector('button[name=ok]');
+        let cancel_button = this.querySelector('button[name=cancel]');
+        ok_button.onclick = this.on_click_ok.bind(this);
+        cancel_button.onclick = this.on_click_cancel.bind(this);
+        this.fields.file = this.querySelector('input[name=file]');
+    }
+    on_click_ok() {
+        this.on_request_load(this.fields.file.files[0]);
+        this.hide();
+    }
+    on_click_cancel() {
+        this.fields.file.value = null;
+        this.hide();
+    }
+}

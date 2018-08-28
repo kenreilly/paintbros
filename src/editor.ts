@@ -13,6 +13,8 @@ export class Editor {
     
     private static editor_mouse_down: boolean
 
+    private static image_name: string
+
     public static get image_data(): ImageContent {
 
         let data: ImageContent = {
@@ -43,13 +45,39 @@ export class Editor {
         window.onresize = Editor.resize_editor
     }
 
-    public static new_image(dimensions: ImageSize) {
-
-        Editor.dimensions = dimensions
-
+    public static clear() {
+        
         while (Editor.editor_el.firstChild) {
             Editor.editor_el.removeChild(Editor.editor_el.firstChild)
         }
+    }
+
+    public static load_image(data: ImageContent) {
+       
+        Editor.image_name = data.name
+        Editor.dimensions = data.dimensions
+
+        Editor.clear()
+
+        let frame_data = data.frames[0]
+        let size = Editor.dimensions.height * Editor.dimensions.width
+        for (var i = 0, ii = size; i != ii; ++i) {
+        
+            let pixel = document.createElement('i')
+            pixel.style.height = pixel.style.width = '0px'
+            pixel.onclick = Editor.on_click_pixel
+
+            Editor.update_pixel(pixel, frame_data[i])
+            Editor.editor_el.appendChild(pixel) 
+        }
+
+        Editor.resize_editor()
+    }
+
+    public static new_image(dimensions: ImageSize) {
+
+        Editor.dimensions = dimensions
+        Editor.clear()
         
         let size = Editor.dimensions.height * Editor.dimensions.width
         for (var i = 0, ii = size; i != ii; ++i) {
