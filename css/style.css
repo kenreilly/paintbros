@@ -10,6 +10,8 @@
     --blue-glass: rgba(var(--bl-r), var(--bl-g), var(--bl-b), 0.32);
     --dark-blue-glass: rgba(var(--bl-r), var(--bl-g), var(--bl-b), 0.24);
 
+    --link-color: rgb(241, 206, 91);
+    --link-hover: rgb(146, 123, 46);
 
     --d-val: 17;
     --dark: rgba(0, var(--d-val), var(--d-val), 1);
@@ -80,6 +82,14 @@ h1 {
 
 h2, h3, h4 { color: var(--blue); text-shadow: 1px 1px 3px var(--blue); }
 h2 { font-size: 18px }
+
+a {
+    color: var(--link-color);
+}
+
+a:hover {
+    color: var(--link-hover);
+}
 
 div.display {
     width: 100%;
@@ -242,11 +252,16 @@ button.selected {
     padding: 20px;
 }
 
+.modal.big {
+    height: 60%;
+    width: 60%;
+}
+
 .modal > h2 {
     border-bottom: 1px solid var(--blue-glass);
 }
 
-.modal > form {
+.modal > form, .modal > div {
     flex-grow: 1;
     padding-top: 20px;
 }
@@ -288,6 +303,7 @@ input, select {
 .modal > div.buttons {
     flex-shrink: 1;
     display: flex;
+    max-height: 38px;
     flex-direction: row-reverse;
 }
 
@@ -295,6 +311,5 @@ input, select {
     margin-left: 20px;
     padding: 4px 12px;
 }
-
 
 .hidden { display: none }

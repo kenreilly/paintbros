@@ -3,8 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>paintbros</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="paintbros - retro bitmap editor" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kenreilly.github.io/paintbros/" />
+    <meta property="og:image" content="https://kenreilly.github.io/paintbros/images/preview.png" />
+    
+    <title>paintbros - retro bitmap editor</title>
+    
     <link rel="stylesheet" type="text/css" media="screen" href="./css/style.css" />
     <script type="module" src="./build/paintbros.js"></script>
 </head>
@@ -16,6 +23,7 @@
             <button name="load">load</button>
             <button name="save">save</button>
             <button name="new">new</button>
+            <button name="help">?</button>
         </div>
     </header>
 
@@ -95,18 +103,32 @@
 
         <div class="modal hidden" name="load_file">
 
-                <h2 class="modal-title">load file</h2>
-                <form>
-                    <input type="file" name="file" />  
-                </form>
-        
-                <div class="buttons">
-                    <button name="cancel">Cancel</button>
-                    <button name="ok">Load</button>
-                </div>
+            <h2 class="modal-title">load file</h2>
+            <form>
+                <input type="file" name="file" />  
+            </form>
+    
+            <div class="buttons">
+                <button name="cancel">Cancel</button>
+                <button name="ok">Load</button>
             </div>
+        </div>
 
+        <div class="modal big hidden" name="help">
+
+            <h2 class="modal-title">about paintbros</h2>
+            <div>
+
+                <p>Welcome to painbros, a retro bitmap graphics editor.</p>
+                <p>This is an early alpha version, so only a few basic features have been implemented so far, including drawing, erasing, and the color picker.</p>
+                <p>Check back for new features and improvements, and if you would like to contribute to this project, check out the github page at: </p> 
+                <a href="https://https://github.com/TheInnovationGroup/paintbros">https://github.com/TheInnovationGroup/paintbros</a>
+                
+            </div>
+            <div class="buttons">
+                <button name="ok">OK</button>
+            </div>
+        </div>
     </div>
-
 </body>
 </html>

@@ -3,11 +3,26 @@ import { Config } from './config.js'
 
 export class Modal {
 
-    private container: HTMLElement;
+    private container: HTMLElement
 
-    private dialog: HTMLElement;
+    private dialog: HTMLElement
+
+    public static visible_instance: Modal
+
+    public static hide_listener = (e) => {
+
+        document.onclick = (e) => {
+
+            var target = <HTMLElement>event.target
+            if (target.closest('.modal')) return
+            Modal.hide()
+        }
+    }
 
     public show() { 
+
+        Modal.visible_instance = this
+        window.setTimeout(Modal.hide_listener, 200)
 
         this.container.classList.remove('hidden')
         this.dialog.classList.remove('hidden') 
@@ -17,6 +32,13 @@ export class Modal {
 
         this.container.classList.add('hidden')
         this.dialog.classList.add('hidden') 
+        document.onclick = () => {}
+    }
+
+    public static hide() {
+
+        if (!this.visible_instance) return
+        this.visible_instance.hide()
     }
 
     protected querySelector(selector: string): HTMLElement {
@@ -159,5 +181,16 @@ export class LoadFileDialog extends Modal {
         cancel_button.onclick = this.on_click_cancel.bind(this)
 
         this.fields.file = <HTMLInputElement>this.querySelector('input[name=file]')
+    }
+}
+
+export class HelpDialog extends Modal {
+
+    constructor() {
+
+        super('help')
+
+        let ok_button = <HTMLButtonElement>this.querySelector('button[name=ok]')
+        ok_button.onclick = this.hide.bind(this)
     }
 }

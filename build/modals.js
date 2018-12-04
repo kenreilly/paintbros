@@ -1,21 +1,37 @@
 import { Config } from './config.js';
 export class Modal {
+    constructor(name) {
+        this.container = document.querySelector('.modal-container');
+        this.dialog = document.querySelector('.modal[name=' + name + ']');
+    }
     show() {
+        Modal.visible_instance = this;
+        window.setTimeout(Modal.hide_listener, 200);
         this.container.classList.remove('hidden');
         this.dialog.classList.remove('hidden');
     }
     hide() {
         this.container.classList.add('hidden');
         this.dialog.classList.add('hidden');
+        document.onclick = () => { };
+    }
+    static hide() {
+        if (!this.visible_instance)
+            return;
+        this.visible_instance.hide();
     }
     querySelector(selector) {
         return this.dialog.querySelector(selector);
     }
-    constructor(name) {
-        this.container = document.querySelector('.modal-container');
-        this.dialog = document.querySelector('.modal[name=' + name + ']');
-    }
 }
+Modal.hide_listener = (e) => {
+    document.onclick = (e) => {
+        var target = event.target;
+        if (target.closest('.modal'))
+            return;
+        Modal.hide();
+    };
+};
 export class NewFileDialog extends Modal {
     constructor() {
         super('new_file');
@@ -97,5 +113,12 @@ export class LoadFileDialog extends Modal {
     on_click_cancel() {
         this.fields.file.value = null;
         this.hide();
+    }
+}
+export class HelpDialog extends Modal {
+    constructor() {
+        super('help');
+        let ok_button = this.querySelector('button[name=ok]');
+        ok_button.onclick = this.hide.bind(this);
     }
 }

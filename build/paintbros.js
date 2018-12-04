@@ -1,4 +1,4 @@
-import { NewFileDialog, SaveFileDialog, LoadFileDialog } from './modals.js';
+import { NewFileDialog, SaveFileDialog, LoadFileDialog, HelpDialog } from './modals.js';
 import { Palette } from './palette.js';
 import { Tools } from './tools.js';
 import { Editor } from './editor.js';
@@ -8,9 +8,11 @@ class PaintBros {
         let new_button = document.querySelector('.commands > button[name=new]');
         let save_button = document.querySelector('.commands > button[name=save]');
         let load_button = document.querySelector('.commands > button[name=load]');
+        let help_button = document.querySelector('.commands > button[name=help]');
         new_button.onclick = () => { PaintBros.new_file_dialog.show(); };
         save_button.onclick = () => { PaintBros.save_file_dialog.show(); };
         load_button.onclick = () => { PaintBros.load_file_dialog.show(); };
+        help_button.onclick = () => { PaintBros.help_dialog.show(); };
     }
     static init() {
         PaintBros.new_file_dialog = new NewFileDialog();
@@ -19,6 +21,7 @@ class PaintBros {
         PaintBros.save_file_dialog.on_request_save = File.save;
         PaintBros.load_file_dialog = new LoadFileDialog();
         PaintBros.load_file_dialog.on_request_load = File.load;
+        PaintBros.help_dialog = new HelpDialog();
         PaintBros.init_command_buttons();
         Palette.init();
         Editor.init();
