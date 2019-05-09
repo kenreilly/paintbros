@@ -6,13 +6,10 @@ import { Palette } from './palette.js'
 export class Editor {
 
     public static dimensions: ImageSize
-
-    private static editor_container: HTMLElement
-
-    private static editor_el: HTMLElement
     
+    private static editor_container: HTMLElement
+    private static editor_el: HTMLElement
     private static editor_mouse_down: boolean
-
     private static image_name: string
 
     public static get image_data(): ImageContent {
@@ -56,10 +53,8 @@ export class Editor {
     public static load_image(data: ImageContent) {
 
         Palette.load_swatch(data.swatch)
-        
         Editor.image_name = data.name
         Editor.dimensions = data.dimensions
-
         Editor.clear()
 
         let frame_data = data.frames[0]
@@ -69,7 +64,6 @@ export class Editor {
             let pixel = document.createElement('i')
             pixel.style.height = pixel.style.width = '0px'
             pixel.onclick = Editor.on_click_pixel
-
             Editor.update_pixel(pixel, frame_data[i])
             Editor.editor_el.appendChild(pixel) 
         }
@@ -81,7 +75,6 @@ export class Editor {
 
         Palette.reset_swatch()
         Palette.init_swatch()
-
         Editor.dimensions = dimensions
         Editor.clear()
         
@@ -101,7 +94,6 @@ export class Editor {
 
         let bound_rect = Editor.editor_container.getBoundingClientRect()
         let dims = { height: bound_rect.height - 24, width: bound_rect.width - 24 }
-
         let px_size = Math.min((dims.width / Editor.dimensions.width), (dims.height / Editor.dimensions.height))
 
         Editor.editor_el.style.height = (px_size * Editor.dimensions.height) + "px"

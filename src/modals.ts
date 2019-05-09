@@ -1,18 +1,15 @@
 import { ImageSize } from './types.js'
 import { Config } from './config.js'
 
-export class Modal {
+export abstract class Modal {
 
     private container: HTMLElement
-
     private dialog: HTMLElement
-
     public static visible_instance: Modal
 
     public static hide_listener = (e) => {
 
         document.onclick = (e) => {
-
             var target = <HTMLElement>event.target
             if (target.closest('.modal')) return
             Modal.hide()
@@ -59,10 +56,7 @@ interface DialogFields {
 
 export class NewFileDialog extends Modal {
 
-    public fields: DialogFields = { 
-        height: null,
-        width: null
-    }
+    public fields: DialogFields = {  height: null, width: null }
 
     public on_request_new_image: Function = (dimensions: ImageSize) => {}
 

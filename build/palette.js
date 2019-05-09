@@ -3,10 +3,7 @@ export class Palette {
     static get swatch_data() {
         let data = [Palette.current_color];
         let recent = Palette.recent_el.querySelectorAll('div');
-        recent.forEach((item) => {
-            debugger;
-            data.push(item.dataset.color);
-        });
+        recent.forEach((item) => { data.push(item.dataset.color); });
         return data;
     }
     static load_swatch(data) {

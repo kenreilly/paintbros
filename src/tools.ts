@@ -3,16 +3,15 @@ import { PaintTool } from './types.js'
 export class Tools {
 
     public static current_tool: PaintTool = PaintTool.Paint
-
     private static tool_buttons: HTMLButtonElement[] = []
 
     public static init() {
 
         document.querySelectorAll('.tools > button').forEach((node) => {
             
-            var button = <HTMLButtonElement>node
+            let button = <HTMLButtonElement>node
             button.onclick = Tools.on_click_tool.bind(Tools, button)
-            Tools.tool_buttons.push(<HTMLButtonElement>button)
+            Tools.tool_buttons.push(button)
         })
     }
 

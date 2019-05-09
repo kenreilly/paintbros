@@ -1,17 +1,14 @@
-import { NewFileDialog, SaveFileDialog, LoadFileDialog, HelpDialog, Modal } from './modals.js'
+import { NewFileDialog, SaveFileDialog, LoadFileDialog, HelpDialog } from './modals.js'
 import { Palette } from './palette.js'
 import { Tools } from './tools.js'
 import { Editor } from './editor.js'
 import { File } from './file.js'
 
-class PaintBros {
+abstract class PaintBros {
   
     private static new_file_dialog: NewFileDialog
-
     private static save_file_dialog: SaveFileDialog
-
     private static load_file_dialog: LoadFileDialog
-
     private static help_dialog: HelpDialog
 
     public static init_command_buttons() {
@@ -46,5 +43,4 @@ class PaintBros {
         Tools.init()
     }
 }
-
 PaintBros.init()

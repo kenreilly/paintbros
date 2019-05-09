@@ -1,6 +1,6 @@
 import { Editor } from './editor.js'
 
-export class File {
+export abstract class File {
 
     public static on_load(reader) {
 

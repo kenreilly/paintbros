@@ -24,7 +24,9 @@
     --base-margin: calc(var(--base-metric) / 2);
 
     --palette-item-size: 16px;
-    --palette-width: calc(var(--palette-item-size) * 16)
+    --palette-width: calc(var(--palette-item-size) * 16);
+    
+    --editor-background: repeating-linear-gradient(-45deg,#606cbc5b,#606cbc50 5px,#4652984f 5px,#46529817 10px);
 }
 
 html, body {
@@ -75,7 +77,7 @@ h1 {
     float: left;
     color: var(--dark);
     font-size: 30px;
-    margin: 4px 0 0 8px;
+    margin: 10px 0 0 8px;
     letter-spacing: 1px;
     text-shadow: 1px 1px 3px var(--blue);
 }
@@ -98,6 +100,7 @@ div.display {
     flex-direction: row;
     align-items: stretch;
 }
+
 div.editor-container {
     display: flex;
     flex-direction: row;
@@ -116,19 +119,12 @@ div.editor {
     /* margin: var(--base-margin); */
     border-right: 1px solid #5a5a5a;
     border-bottom: 1px solid #5a5a5a;
-    background: repeating-linear-gradient(
-        -45deg,
-        #606cbc5b,
-        #606cbc50 5px,
-        #4652984f 5px,
-        #46529817 10px
-    );
+    background: var(--editor-background);
 }
 
 .editor > i {
     display: block;
     box-shadow: inset 1px 1px #5a5a5a;
-    align-items: flex-start;
 }
 
 div.sidebar {
@@ -155,7 +151,11 @@ footer > div {
     line-height: 18px;
     margin: 6px 12px;
 }
-footer > div:nth-child(2) { font-size: 12px; }
+
+footer > div:nth-child(2) { 
+    font-size: 12px; 
+    float: right;
+}
 
 div.sidebar > h2 { margin: 0 0 12px 0 }
 div.sidebar > h2 + div { margin-bottom: 24px; }
@@ -248,7 +248,6 @@ button.selected {
     background-color: #000;
     height: 40%;
     width: 40%;
-    
     padding: 20px;
 }
 
@@ -272,7 +271,6 @@ button.selected {
     width: 20%;
     margin-bottom: 12px;
 }
-
 
 select { 
     -webkit-appearance: none;
