@@ -12,4 +12,5 @@ Fork and/or clone this repo to get started. You'll need [Node](https://nodejs.or
 To compile this project, simply run `tsc` from within the project folder.
 
 I hope you enjoy this cool retro paint program!
+
 Kenneth [@8_bit_hacker](https://twitter.com/8_bit_hacker)
